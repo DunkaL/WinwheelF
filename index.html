@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WinwheelF</title>
+    <style>
+        #tut9PositionedContainer{
+            position: relative;
+            width: 434px;
+            padding-bottom: 40px;
+            margin: 0 auto;
+            background-image: url('img-bg.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        #tut9PositionedPointer{
+            position: absolute;
+            left: 50%;
+            margin-left: -25px;
+            bottom: 40px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 25px 48px;
+            border-color: transparent transparent #edcf33;
+            z-index: 999;
+        }
+
+        #tut9PositionedButton{
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            top: 50%;
+            left: 50%;
+            margin: -77px 0 0 -55px;
+            border: 0;
+            border-radius: 50%;
+            outline: 0;
+            font-size: 24px;
+            box-shadow: 0 3px 20px rgba(0,0,0,.4);
+            line-height: 1.2;
+            font-weight: 700;
+            background-color: #8e9392;
+            cursor: pointer;
+            color: #ffffff;
+            z-index: 999;
+        }
+
+        #tut9PositionedButton span{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            box-shadow: inset 0 -2px 0 #202b2b, 0 2px 0 #304140;
+            background: radial-gradient(ellipse at center,#c32017 0,#a5211a 100%);
+        }
+
+        #tut9PositionedButton:active span{
+            box-shadow: inset 0 0 5px rgba(0,0,0,.4);
+        }
+        body{
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            min-width: 320px;
+        }
+        .container{
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media screen and (max-width: 435px){
+            #canvas{
+                transform: scale(0.7) translateX(-22%);
+            }
+            #tut9PositionedContainer{
+                width: 300px;
+                padding-bottom: 26px;
+                transform: translateY(-50px);
+            }
+            #tut9PositionedButton{
+                width: 70px;
+                height: 70px;
+                margin: -52px 0 0 -34px;
+                font-size: 14px;
+            }
+            #tut9PositionedButton span{
+                width: 55px;
+                height: 55px;
+            }
+            .block-container{
+                width: 320px;
+                height: 350px;
+                overflow: hidden;
+            }
+
+            #tut9PositionedPointer{
+                margin-left: -20px;
+                bottom: 95px;
+                border-width: 0 20px 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hello World</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut eum doloribus qui, molestias quis voluptas quae itaque officiis omnis. Architecto porro nesciunt ad debitis tempore. Eius unde accusantium accusamus, quos quod doloribus molestiae enim ullam explicabo porro cumque maxime pariatur qui nulla tempore delectus praesentium quasi. Possimus mollitia eligendi quas repudiandae tempora error asperiores quibusdam veritatis ex? Saepe quidem tempora eligendi fuga consectetur eaque quisquam. Incidunt ducimus corrupti labore modi dolorem ex. Provident, sint necessitatibus eius aliquam facere quod soluta excepturi assumenda, illum rem quis perspiciatis eaque nesciunt laborum dignissimos voluptatum voluptatem, doloremque ea praesentium consequuntur perferendis ratione reprehenderit sunt?</p>
+
+        <div class="block-container">
+            <div id="tut9PositionedContainer"> 
+                <button id="tut9PositionedButton" onClick="startSpin();">
+                    <span>Пуск</span>
+                </button>
+                <canvas id="canvas" width="434" height="434">
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">Canvas не поддерживается</font>
+                    </font>
+                </canvas>     
+                <div id="tut9PositionedPointer"></div>
+            </div>
+        </div>
+        
+        <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor doloremque error quaerat. Atque nostrum facilis necessitatibus rem minima nisi deleniti eaque, dicta doloremque veniam ullam nemo excepturi vero, adipisci sunt.
+        </p>
+    </div>
+   
+
+
+    <script src="Winwheel.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+    <script>
+        
+        let theWheel = new Winwheel({
+            'numSegments'     : 8,     
+            'outerRadius'       : 160, 
+            'drawText'        : false,     
+            // 'textFontSize'    : 10,
+            // 'textAlignment'   : 'outer',
+            // 'textFillStyle'   : 'white',   
+            'pointerAngle'    : 180,
+            'drawMode'        : 'segmentImage',
+            'segments' :
+            [
+                {'image' : 'img/skidka-na-montazh-10.png',  'text' : 'скидка на монтаж 10%'},
+                {'image' : 'img/3000-rublej-skidka.png',   'text' : '3000 рублей СКИДКА'},
+                {'image' : 'img/remeshki-dlya-skrutki.png',  'text' : 'ремешки для скрутки'},
+                {'image' : 'img/shampanskoe.png',  'text' : 'шампанское'},
+                {'image' : 'img/skidka-na-montazh-10.png',  'text' : 'скидка на монтаж 10%'},
+                {'image' : 'img/montazh-myagkix-okon-besplatno.png', 'text' : 'монтаж мягких окон бесплатно'},
+                {'image' : 'img/remeshki-dlya-skrutki.png',  'text' : 'ремешки для скрутки'},
+                {'image' : 'img/shampanskoe.png',  'text' : 'шампанское'}
+            ],
+            'animation' : {
+                'type'     : 'spinToStop',
+                'duration' : 5,    
+                'spins'    : 8,     
+                'callbackFinished' : alertPrize
+            }
+        });
+
+        // Vars used by the code in this page to do power controls.
+        let wheelPower = 0;
+        let wheelSpinning = false;
+
+        function startSpin() {
+            if (wheelSpinning == false) {
+                if (wheelPower == 1) {
+                    theWheel.animation.spins = 3;
+                } else if (wheelPower == 2) {
+                    theWheel.animation.spins = 8;
+                } else if (wheelPower == 3) {
+                    theWheel.animation.spins = 15;
+                }
+
+                theWheel.startAnimation();
+                wheelSpinning = true;
+            }
+        }
+
+        function alertPrize(indicatedSegment){
+            alert(indicatedSegment.text);
+        }
+    </script>
+</body>
+</html>
